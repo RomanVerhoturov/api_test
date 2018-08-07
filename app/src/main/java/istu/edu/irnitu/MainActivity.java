@@ -1,12 +1,9 @@
 
 
-/*
- *  Aleksandr Novikov luck.alex@gmail.com Copyright (c) 2016.
- */
-
 package istu.edu.irnitu;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.TabLayout;
@@ -22,12 +19,13 @@ import java.util.ArrayList;
 
 import istu.edu.irnitu.adapters.TabsFragmentAdapter;
 import istu.edu.irnitu.fragments.AbstractTabFragment;
+import istu.edu.irnitu.fragments.EventsFragment;
 import istu.edu.irnitu.fragments.NewsFragment;
 import istu.edu.irnitu.fragments.ResourceFragment;
 import istu.edu.irnitu.fragments.ScheduleFragment;
 
 
-public class MainActivity extends AppCompatActivity {
+public class MainActivity extends AppCompatActivity implements EventsFragment.OnFragmentInteractionListener{
     private static final String LOG_TAG = "LOG_TAG_MAIN";
     private ArrayList<AbstractTabFragment> tabFragmentList;
 
@@ -55,13 +53,15 @@ public class MainActivity extends AppCompatActivity {
         tabFragmentList = new ArrayList<>();
         tabFragmentList.add(0, ResourceFragment.getInstance(MainActivity.this, userCookies));
         tabFragmentList.add(1, NewsFragment.getInstance(MainActivity.this, userCookies));
-        tabFragmentList.add(2, ScheduleFragment.getInstance(MainActivity.this));
+        tabFragmentList.add(2, EventsFragment.getInstance(MainActivity.this, userCookies));
+        tabFragmentList.add(3, ScheduleFragment.getInstance(MainActivity.this));
 
         viewPager = (ViewPager) findViewById(viewPagerId);
         adapter = new TabsFragmentAdapter(MainActivity.this, getSupportFragmentManager(), tabFragmentList);
         viewPager.setAdapter(adapter);
-        viewPager.setOffscreenPageLimit(3);
+        viewPager.setOffscreenPageLimit(4);
         tabLayout = (TabLayout) findViewById(tabLayoutId);
+        tabLayout.setTabMode(TabLayout.MODE_SCROLLABLE);
         tabLayout.setupWithViewPager(viewPager);
 
         tabLayout.setTabMode(TabLayout.MODE_FIXED);
@@ -98,16 +98,23 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     public void onBackPressed() {
-        if (viewPager.getCurrentItem() == 2) {
-            ScheduleFragment fragment = (ScheduleFragment) adapter.getItem(2);
-            if (fragment != null && fragment.getmWebView().canGoBack()) {
-                fragment.getmWebView().goBack();
-            } else {
-                super.onBackPressed();
-            }
-        } else {
+//        if (viewPager.getCurrentItem() == 2) {
+//            ScheduleFragment fragment = (ScheduleFragment) adapter.getItem(2);
+//            if (fragment != null && fragment.getmWebView().canGoBack()) {
+//                fragment.getmWebView().goBack();
+//            } else {
+//                super.onBackPressed();
+//            }
+//        } else if (viewPager.getCurrentItem() == 3) {
+//            ScheduleFragment fragment = (ScheduleFragment) adapter.getItem(3);
+//            if (fragment != null && fragment.getmWebView().canGoBack()) {
+//                fragment.getmWebView().goBack();
+//            } else {
+//                super.onBackPressed();
+//            }
+//        } else {
             super.onBackPressed();
-        }
+ //       }
     }
 
 
@@ -128,4 +135,10 @@ public class MainActivity extends AppCompatActivity {
         }
         return super.onOptionsItemSelected(item);
     }
+
+    @Override
+    public void onFragmentInteraction(Uri uri) {
+
+    }
+
 }

@@ -13,6 +13,7 @@ import android.util.Log;
  */
 public class InternetController {
     private static  String LOG_TAG = "LOG_TAG";
+
     public static boolean hasConnection(Context appContext) {
         boolean connection = false;
         try {

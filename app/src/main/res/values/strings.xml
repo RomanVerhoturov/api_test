@@ -2,6 +2,7 @@
     <string name="app_name">ИРНИТУ</string>
     <string name="action_about">О приложении</string>
     <string name="tab_item_news">Новости</string>
+    <string name="tab_item_events">События</string>
     <string name="tab_item_resources">Ресурсы</string>
     <string name="loading">Загрузка</string>
     <string name="retry">Повторить попытку</string>
@@ -60,6 +61,11 @@
     <string name="mail_subject">Предложения и пожелания</string>
     <string name="title_activity_news_common">NewsCommonActivity</string>
     <string name="app_name_about">ИРНИТУ</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="link_receive_events_list">https://api.timepad.ru/v1/</string>
+    <string name="text_progress_dialog">Пожалуйста, подождите! Идет загрузка данных.</string>
 
 
 </resources>
